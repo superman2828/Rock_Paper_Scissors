@@ -110,12 +110,20 @@ public class RockPaperScissorsFrame extends JFrame{
 
         rockBtn = new JButton(rockIcon);
         rockBtn.addActionListener(e -> {
-            playerMove = "rock";
+            completeRound("rock");
             playerRock++;
         });
 
         paperBtn = new JButton(paperIcon);
+        paperBtn.addActionListener(e -> {
+            completeRound("paper");
+            playerPaper++;
+        });
         scissorsBtn = new JButton(scissorsIcon);
+        scissorsBtn.addActionListener(e -> {
+            completeRound("scissors");
+            playerScissors++;
+        });
         quitBtn = new JButton(quitIcon);
 
         quitBtn.addActionListener(e -> System.exit(0));
@@ -207,11 +215,11 @@ public class RockPaperScissorsFrame extends JFrame{
         return computerMove;
     }
 
-    public void completeRound() {
+    public void completeRound(String playerMove) {
         String computerMove = getComputerMove(playerMove);
         String result = "";
 
-        resultsArea.append("Player chose: " + playerMove + "Computer Used: " + computerMove + "\n");
+        resultsArea.append("Player chose: " + playerMove + ", Computer Used: " + computerMove + "\n");
 
         if (playerMove.equals("rock")){
             if (computerMove.equals("rock")){
